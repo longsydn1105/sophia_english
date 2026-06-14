@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophia English Center – 1 Tháng Học Tiếng Anh Miễn Phí</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Be Vietnam Pro', 'sans-serif'] },
+                    colors: {
+                        navy: { DEFAULT: '#003087', dark: '#001a4d', light: '#0052cc' },
+                        brand: { red: '#C41E3A', gold: '#F5A623' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #001a4d 0%, #003087 45%, #0052cc 100%);
+        }
+        .hero-blob-1 {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,82,204,0.35) 0%, transparent 70%);
+            top: -100px; right: -100px; border-radius: 50%;
+        }
+        .hero-blob-2 {
+            position: absolute; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%);
+            bottom: -80px; left: -80px; border-radius: 50%;
+        }
+
+        .btn-red {
+            background: linear-gradient(135deg, #C41E3A 0%, #e63950 100%);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 18px rgba(196,30,58,0.45);
+        }
+        .btn-red:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(196,30,58,0.55);
+        }
+        .btn-red:active { transform: translateY(0); }
+
+        input, select {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #003087;
+            box-shadow: 0 0 0 3px rgba(0,48,135,0.15);
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.10);
+        }
+
+        .tab-active {
+            background-color: #C41E3A;
+            color: #fff;
+            border-color: #C41E3A;
+        }
+
+        .section-title { color: #003087; font-weight: 900; }
+
+        /* Scroll-reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero fade-in */
+        @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeUp   { from { opacity:0; transform:translateY(24px);  } to { opacity:1; transform:translateY(0); } }
+        .anim-down { animation: fadeDown 0.75s ease forwards; }
+        .anim-up   { animation: fadeUp  0.75s ease 0.15s forwards; opacity:0; }
+
+        /* Floating bar */
+        .floating-cta {
+            box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+<!-- ═══════════════════════ STICKY HEADER ═══════════════════════ -->
+<header class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="https://sophiavietnam.edu.vn/" target="_blank" rel="noopener" class="flex items-center">
+            <img src="imgs/logo.jpeg" alt="Sophia English Center" class="h-11 w-auto object-contain">
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-gray-600">
+            <a href="#chuong-trinh" class="hover:text-brand-red transition-colors">Chương Trình</a>
+            <a href="#khoa-hoc"     class="hover:text-brand-red transition-colors">Khóa Học</a>
+            <a href="#ly-do"        class="hover:text-brand-red transition-colors">Tại Sao Sophia</a>
+            <a href="#cam-nhan"     class="hover:text-brand-red transition-colors">Cảm Nhận</a>
+        </nav>
+
+        <a href="#form-hero" class="hidden md:inline-flex btn-red text-white text-sm font-black px-5 py-2.5 rounded-full">
+            ĐĂNG KÝ NGAY
+        </a>
+
+        <!-- Hamburger -->
+        <button id="menuBtn" class="md:hidden p-2 text-gray-600" aria-label="Menu">
+            <svg id="iconOpen"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="iconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pb-5">
+        <nav class="flex flex-col gap-1 pt-3 text-sm font-semibold text-gray-700">
+            <a href="#chuong-trinh" class="py-3 border-b border-gray-50 hover:text-brand-red transition-colors">Chương Trình</a>
+            <a href="#khoa-hoc"     class="py-3 border-b border-gray-50 hover:text-brand-red transition-colors">Khóa Học</a>
+            <a href="#ly-do"        class="py-3 border-b border-gray-50 hover:text-brand-red transition-colors">Tại Sao Sophia</a>
+            <a href="#cam-nhan"     class="py-3 hover:text-brand-red transition-colors">Cảm Nhận</a>
+            <a href="#form-hero" class="mt-3 btn-red text-white font-black text-sm py-3 rounded-full text-center">ĐĂNG KÝ NGAY</a>
+        </nav>
+    </div>
+</header>
+
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero-bg relative overflow-hidden">
+    <div class="hero-blob-1"></div>
+    <div class="hero-blob-2"></div>
+
+    <div class="max-w-6xl mx-auto px-4 py-14 md:py-20 relative z-10">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+
+            <!-- Left: headline + benefits -->
+            <div class="anim-up text-white">
+                <span class="inline-block bg-brand-gold text-blue-950 text-xs font-black px-4 py-1.5 rounded-full mb-5 tracking-wider uppercase">
+                    🎁 Ưu Đãi Đặc Biệt – Chỉ Trong Tháng Này
+                </span>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-5">
+                    NHẬN NGAY<br>
+                    <span class="text-brand-gold">1 THÁNG</span> HỌC<br>
+                    TIẾNG ANH<br>
+                    <span class="text-red-400">MIỄN PHÍ</span>
+                </h1>
+                <p class="text-blue-100 text-base md:text-lg leading-relaxed mb-7">
+                    Chương trình dành cho bé <strong class="text-white">2.5 – 16 tuổi</strong> lần đầu ghi danh tại Sophia. 100% Giáo Viên Nước Ngoài · Chuẩn Cambridge.
+                </p>
+                <ul class="flex flex-col gap-3 text-sm md:text-base text-blue-100">
+                    <li class="flex items-center gap-3"><span class="text-green-400 text-lg shrink-0">✅</span>100% Giáo viên nước ngoài chuẩn quốc tế</li>
+                    <li class="flex items-center gap-3"><span class="text-green-400 text-lg shrink-0">✅</span>Giáo trình chuẩn Cambridge được công nhận toàn cầu</li>
+                    <li class="flex items-center gap-3"><span class="text-green-400 text-lg shrink-0">✅</span>Phương pháp học qua chơi & dự án thực tế</li>
+                    <li class="flex items-center gap-3"><span class="text-green-400 text-lg shrink-0">✅</span>Áp dụng tại tất cả trung tâm Sophia trên toàn quốc</li>
+                </ul>
+            </div>
+
+            <!-- Right: registration form -->
+            <div id="form-hero" class="anim-down">
+                <div class="bg-white rounded-2xl shadow-2xl p-7 md:p-8">
+                    <h2 class="text-2xl font-black text-center text-navy mb-1">ĐIỀN THÔNG TIN ĐỂ NHẬN</h2>
+                    <p class="text-center text-gray-400 text-sm mb-6">1 Tháng Học Tiếng Anh Miễn Phí Tại Sophia</p>
+
+                    <form class="flex flex-col gap-4" onsubmit="handleSubmit(event)">
+                        <input type="text" placeholder="Họ và Tên Phụ huynh" required
+                            class="border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-800 placeholder-gray-400 text-sm w-full">
+
+                        <input type="tel" placeholder="Số điện thoại" required
+                            class="border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-800 placeholder-gray-400 text-sm w-full">
+
+                        <div class="relative">
+                            <select required class="border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-500 text-sm w-full appearance-none bg-white">
+                                <option value="" disabled selected>Độ tuổi của học viên</option>
+                                <option>2 – 3 tuổi (Mầm non)</option>
+                                <option>4 – 6 tuổi (Mẫu giáo)</option>
+                                <option>7 – 10 tuổi (Tiểu học)</option>
+                                <option>11 – 13 tuổi (THCS)</option>
+                                <option>14 – 16 tuổi (THPT)</option>
+                            </select>
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-xs">▼</span>
+                        </div>
+
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" checked class="mt-0.5 w-4 h-4 accent-navy shrink-0">
+                            <span class="text-xs text-gray-400 leading-relaxed">
+                                Bằng việc đăng ký thông tin, bạn đồng ý cho phép Sophia liên lạc thông qua các hình thức: cuộc gọi, tin nhắn, email nhằm mục đích tư vấn các chương trình Anh ngữ &amp; nghiên cứu thị trường.
+                            </span>
+                        </label>
+
+                        <button type="submit" class="btn-red text-white font-black text-lg py-4 rounded-xl w-full tracking-wide mt-1">
+                            ĐĂNG KÝ NGAY! 🎉
+                        </button>
+                    </form>
+
+                    <!-- Social proof -->
+                    <div class="mt-5 flex items-center gap-3 justify-center">
+                        <div class="flex -space-x-2">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=40&h=40&fit=crop&crop=face" class="w-8 h-8 rounded-full border-2 border-white object-cover" alt="">
+                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop&crop=face" class="w-8 h-8 rounded-full border-2 border-white object-cover" alt="">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" class="w-8 h-8 rounded-full border-2 border-white object-cover" alt="">
+                        </div>
+                        <p class="text-xs text-gray-400"><strong class="text-navy">2,500+</strong> phụ huynh đã đăng ký tháng này</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ CHI TIẾT CHƯƠNG TRÌNH ═══════════════════════ -->
+<section id="chuong-trinh" class="bg-gray-50 py-16">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="section-title text-2xl md:text-3xl text-center mb-5">CHI TIẾT CHƯƠNG TRÌNH</h2>
+        <div class="flex justify-center mb-10">
+            <a href="https://sophiavietnam.edu.vn/" target="_blank" rel="noopener"
+               class="btn-red text-white font-black text-base px-8 py-3.5 rounded-full inline-flex items-center gap-2">
+                KHÁM PHÁ NGAY →
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <!-- Card 1 -->
+            <div class="reveal bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
+                <h3 class="font-black text-navy text-base mb-4 flex items-center gap-2">
+                    <span class="w-1 h-5 bg-brand-red rounded-full shrink-0"></span>
+                    ĐIỀU KIỆN ÁP DỤNG
+                </h3>
+                <div class="flex flex-col gap-4 text-sm text-gray-700 leading-relaxed">
+                    <div class="flex items-start gap-3">
+                        <span class="text-xl shrink-0">✅</span>
+                        <p>Áp dụng cho bé <strong>2.5 – 16 tuổi</strong> lần đầu ghi danh các chương trình học tại Sophia.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-xl shrink-0">✅</span>
+                        <p>Áp dụng tại <strong>tất cả các trung tâm Sophia</strong> trên toàn quốc.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="reveal bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
+                <h3 class="font-black text-navy text-base mb-4 flex items-center gap-2">
+                    <span class="w-1 h-5 bg-brand-red rounded-full shrink-0"></span>
+                    CÁCH THỨC NHẬN QUÀ
+                </h3>
+                <div class="flex flex-col gap-4 text-sm text-gray-700 leading-relaxed">
+                    <div class="flex items-start gap-3">
+                        <span class="text-xl shrink-0">👉</span>
+                        <p>Ba mẹ điền đầy đủ thông tin vào <strong>BIỂU MẪU phía trên</strong>, hoặc nhắn tin đến fanpage Sophia Việt Nam theo cú pháp <strong>SĐT + SOPHIA123</strong> (ví dụ: 0987543210 + SOPHIA123)</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-xl shrink-0">⏰</span>
+                        <p>Trong vòng <strong>24h</strong> sẽ có nhân viên của Sophia liên hệ để tư vấn và xác nhận thông tin quà tặng.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ CON NHẬN ĐƯỢC GÌ ═══════════════════════ -->
+<section class="bg-white py-16">
+    <div class="max-w-5xl mx-auto px-4">
+        <h2 class="section-title text-2xl md:text-3xl text-center mb-1">CON NHẬN ĐƯỢC GÌ TRONG 1 THÁNG HỌC</h2>
+        <h2 class="text-brand-red font-black text-2xl md:text-3xl text-center mb-10">TIẾNG ANH MIỄN PHÍ TẠI SOPHIA?</h2>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+
+            <div class="reveal card bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                <div class="flex items-start gap-4">
+                    <div class="bg-navy text-white text-xs font-black px-2.5 py-1.5 rounded-full shrink-0">💯</div>
+                    <div>
+                        <h4 class="font-black text-navy mb-1.5">MÔI TRƯỜNG 100% ANH NGỮ</h4>
+                        <p class="text-xs text-gray-500 font-semibold mb-2">Cho con thẩm thấu ngôn ngữ như cách học tiếng mẹ đẻ</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Tại Sophia, con được "tắm" trong môi trường 100% tiếng Anh cùng đội ngũ giáo viên nước ngoài có chuyên môn cao và giàu kinh nghiệm. Con không chỉ phát âm chuẩn bản xứ, mà còn hình thành tư duy tiếng Anh tự nhiên, rèn luyện phản xạ giao tiếp từ sớm mà không cần dịch qua tiếng Việt.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal card bg-red-50 rounded-2xl p-6 border border-red-100">
+                <div class="flex items-start gap-4">
+                    <div class="bg-brand-red text-white text-xs font-black px-2.5 py-1.5 rounded-full shrink-0">💯</div>
+                    <div>
+                        <h4 class="font-black text-navy mb-1.5">GIÁO TRÌNH CHUẨN CAMBRIDGE</h4>
+                        <p class="text-xs text-gray-500 font-semibold mb-2">Nền tảng học thuật vững chắc, lộ trình phát triển rõ ràng</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Chương trình học tại Sophia được thiết kế theo khung chuẩn Cambridge – một trong những hệ thống đánh giá tiếng Anh uy tín hàng đầu thế giới. Lộ trình học được cá nhân hoá theo từng độ tuổi và năng lực, giúp con nắm chắc 4 kỹ năng nghe – nói – đọc – viết.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal card bg-green-50 rounded-2xl p-6 border border-green-100">
+                <div class="flex items-start gap-4">
+                    <div class="bg-green-600 text-white text-xs font-black px-2.5 py-1.5 rounded-full shrink-0">💯</div>
+                    <div>
+                        <h4 class="font-black text-navy mb-1.5">PHƯƠNG PHÁP HỌC QUA CHƠI & DỰ ÁN</h4>
+                        <p class="text-xs text-gray-500 font-semibold mb-2">Học không chỉ để biết, mà để hiểu và vận dụng</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Con được tiếp cận tiếng Anh thông qua các trò chơi tương tác và dự án thực tế. Từ trò chơi tiếng Anh, kể chuyện, đóng vai, đến làm mô hình và thuyết trình – tất cả đều là trải nghiệm học tập tích cực giúp con phát triển ngôn ngữ lẫn tư duy phản biện.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal card bg-yellow-50 rounded-2xl p-6 border border-yellow-100">
+                <div class="flex items-start gap-4">
+                    <div class="bg-yellow-500 text-white text-xs font-black px-2.5 py-1.5 rounded-full shrink-0">💯</div>
+                    <div>
+                        <h4 class="font-black text-navy mb-1.5">100% GIÁO VIÊN NƯỚC NGOÀI</h4>
+                        <p class="text-xs text-gray-500 font-semibold mb-2">Chìa khóa giúp con phát âm chuẩn và tư duy bằng tiếng Anh từ sớm</p>
+                        <p class="text-sm text-gray-600 leading-relaxed">Tại Sophia, tất cả lớp học đều do giáo viên nước ngoài giảng dạy. Các thầy cô không chỉ có chứng chỉ quốc tế (CELTA, TESOL...) mà còn được đào tạo chuyên sâu về tâm lý trẻ em và phương pháp truyền cảm hứng trong lớp học.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ CÁC KHÓA HỌC ═══════════════════════ -->
+<section id="khoa-hoc" class="bg-gray-50 py-16">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-10">
+            <span class="inline-block bg-brand-red text-white text-xs font-bold px-4 py-1.5 rounded-full mb-3 tracking-wider">TẠI SAO NÊN CHỌN SOPHIA</span>
+            <h2 class="section-title text-2xl md:text-3xl mb-3">CÁC KHÓA HỌC Ở SOPHIA</h2>
+            <p class="text-gray-500 text-sm max-w-xl mx-auto leading-relaxed">
+                Trung tâm tiếng Anh Sophia cung cấp nhiều khóa học theo chuẩn Cambridge. Với mỗi khóa học, Sophia đã có lộ trình riêng phù hợp với từng độ tuổi và mục tiêu của từng bé.
+            </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+            <!-- Course 1 -->
+            <div class="reveal card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="relative h-52 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=700&h=350&fit=crop&q=80"
+                         alt="Tiếng Anh Mẫu Giáo" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div>
+                    <span class="absolute top-3 left-3 bg-brand-gold text-blue-950 font-bold text-xs px-3 py-1 rounded-full">Độ tuổi 4 – 6</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-black text-navy text-xl mb-2">TIẾNG ANH MẪU GIÁO</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-5">Dành cho bé từ 4 – 6 tuổi. Tập trung phát triển phản xạ ngôn ngữ và khơi dậy tình yêu với tiếng Anh từ giai đoạn vàng nhất của trẻ.</p>
+                    <a href="#form-hero" class="inline-block btn-red text-white text-sm font-bold px-6 py-2.5 rounded-full">Tìm hiểu thêm →</a>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="reveal card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                <div class="relative h-52 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=700&h=350&fit=crop&q=80"
+                         alt="Tiếng Anh Mầm Non" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent"></div>
+                    <span class="absolute top-3 left-3 bg-brand-gold text-blue-950 font-bold text-xs px-3 py-1 rounded-full">Độ tuổi 2.5 – 4</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-black text-navy text-xl mb-2">TIẾNG ANH MẦM NON</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-5">Dành cho bé từ 2.5 – 4 tuổi. Nuôi dưỡng bản năng ngôn ngữ tự nhiên qua âm nhạc, vận động và các trò chơi sáng tạo.</p>
+                    <a href="#form-hero" class="inline-block btn-red text-white text-sm font-bold px-6 py-2.5 rounded-full">Tìm hiểu thêm →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ GIÁ TRỊ CỐT LÕI ═══════════════════════ -->
+<section id="ly-do" class="bg-white py-16">
+    <div class="max-w-5xl mx-auto px-4">
+        <h2 class="section-title text-2xl md:text-3xl text-center mb-8">GIÁ TRỊ CỐT LÕI SOPHIA MANG LẠI</h2>
+
+        <!-- Tabs -->
+        <div class="flex justify-center gap-3 mb-10 flex-wrap">
+            <button onclick="switchTab('phuong-phap')" id="tab-phuong-phap"
+                class="tab-active text-sm font-bold px-6 py-2.5 rounded-full border-2 border-brand-red transition-all">
+                Phương pháp
+            </button>
+            <button onclick="switchTab('cong-nghe')" id="tab-cong-nghe"
+                class="text-brand-red text-sm font-bold px-6 py-2.5 rounded-full border-2 border-red-200 hover:border-brand-red transition-all">
+                Công nghệ
+            </button>
+            <button onclick="switchTab('lo-trinh')" id="tab-lo-trinh"
+                class="text-brand-red text-sm font-bold px-6 py-2.5 rounded-full border-2 border-red-200 hover:border-brand-red transition-all">
+                Lộ trình
+            </button>
+        </div>
+
+        <!-- Content Panels -->
+        <div id="content-phuong-phap" class="grid md:grid-cols-2 gap-10 items-center">
+            <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=640&h=420&fit=crop&q=80"
+                 alt="Phương pháp học" class="rounded-2xl w-full shadow-lg">
+            <div>
+                <h3 class="font-black text-navy text-xl mb-4">PHƯƠNG PHÁP HỌC TẬP CHỦ ĐỘNG</h3>
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">Ở Sophia, học viên được học thực hành thực tế. Khác với cách giảng dạy truyền thống, mỗi học sinh đều có đủ cơ hội thực hành với bạn học và giáo viên theo một hành trình học lý thú riêng.</p>
+                <ul class="flex flex-col gap-3 text-sm">
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Chất lượng giảng dạy tiêu chuẩn</strong> – Số giáo viên đạt 9.0 IELTS</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Hệ thống học tập toàn diện</strong> – Kết hợp 4 kỹ năng Nghe – Nói – Đọc – Viết</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Nền tảng Anh ngữ vững chắc</strong> – Phát triển kỹ năng từ sớm</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Nội dung học tập sinh động</strong> – 100% kết hợp chơi và học</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Phát triển kỹ năng học</strong> – Tập chuẩn toàn diện</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Bổ sung kỹ năng mềm</strong> – Làm việc nhóm, thuyết trình, tư duy phản biện</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="content-cong-nghe" class="hidden grid md:grid-cols-2 gap-10 items-center">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=640&h=420&fit=crop&q=80"
+                 alt="Công nghệ học" class="rounded-2xl w-full shadow-lg">
+            <div>
+                <h3 class="font-black text-navy text-xl mb-4">CÔNG NGHỆ GIÁO DỤC HIỆN ĐẠI</h3>
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">Sophia ứng dụng các công nghệ giáo dục tiên tiến nhất giúp học viên học tập hiệu quả hơn và giúp phụ huynh theo dõi tiến độ dễ dàng.</p>
+                <ul class="flex flex-col gap-3 text-sm">
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Hệ thống học trực tuyến</strong> – Luyện tập mọi lúc mọi nơi</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>App theo dõi tiến độ</strong> – Phụ huynh cập nhật kết quả của con</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Bài tập tương tác</strong> – AI cá nhân hóa lộ trình học cho từng bé</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Lớp học thực tế ảo</strong> – Trải nghiệm môi trường nước ngoài ngay tại nhà</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="content-lo-trinh" class="hidden grid md:grid-cols-2 gap-10 items-center">
+            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=640&h=420&fit=crop&q=80"
+                 alt="Lộ trình học" class="rounded-2xl w-full shadow-lg">
+            <div>
+                <h3 class="font-black text-navy text-xl mb-4">LỘ TRÌNH HỌC RÕ RÀNG</h3>
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">Mỗi học viên có một lộ trình học được thiết kế riêng, phù hợp với độ tuổi, năng lực và mục tiêu của từng bé.</p>
+                <ul class="flex flex-col gap-3 text-sm">
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Đánh giá đầu vào miễn phí</strong> – Xác định trình độ chính xác</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Lộ trình cá nhân hóa</strong> – Theo đúng pace của từng bé</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Báo cáo tiến độ định kỳ</strong> – Cập nhật kết quả hàng tháng</span></li>
+                    <li class="flex items-start gap-3"><span class="bg-blue-100 text-navy font-bold px-2 py-0.5 rounded text-xs shrink-0 mt-0.5">✓</span><span><strong>Chuẩn bị thi chứng chỉ quốc tế</strong> – Cambridge, IELTS, TOEFL</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ TẠI SAO SOPHIA – HERO BLUE ═══════════════════════ -->
+<section class="hero-bg py-16 relative overflow-hidden">
+    <div class="hero-blob-1"></div>
+    <div class="max-w-5xl mx-auto px-4 relative z-10">
+        <h2 class="text-white font-black text-2xl md:text-3xl text-center mb-3">TẠI SAO SOPHIA LÀ LỰA CHỌN TỐT NHẤT?</h2>
+        <p class="text-blue-200 text-center text-sm mb-10 max-w-2xl mx-auto">SOPHIA luôn là sự lựa chọn hàng đầu với chính sách ưu đãi tốt nhất cho tất cả các bậc phụ huynh nào cho con luyện tập ngôn ngữ.</p>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
+                <div class="text-3xl mb-3">🏆</div>
+                <h4 class="font-black text-base mb-2">Chất lượng giảng dạy tiêu chuẩn</h4>
+                <p class="text-blue-200 text-sm leading-relaxed">SOPHIA tự hào có đội ngũ giáo viên đạt 9.0 IELTS và hơn 50,000 học viên đang theo học mỗi ngày.</p>
+            </div>
+            <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
+                <div class="text-3xl mb-3">📚</div>
+                <h4 class="font-black text-base mb-2">Hệ thống học tập toàn diện</h4>
+                <p class="text-blue-200 text-sm leading-relaxed">Chương trình bao gồm phương pháp học chủ động giúp từng học sinh tập chuẩn 4 kỹ năng toàn diện.</p>
+            </div>
+            <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
+                <div class="text-3xl mb-3">🚀</div>
+                <h4 class="font-black text-base mb-2">Phát triển kỹ năng mềm</h4>
+                <p class="text-blue-200 text-sm leading-relaxed">Tập chuẩn ngôn ngữ đi đôi với phát triển kỹ năng giao tiếp, tư duy phản biện và làm việc nhóm.</p>
+            </div>
+            <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
+                <div class="text-3xl mb-3">🌍</div>
+                <h4 class="font-black text-base mb-2">Giáo viên nước ngoài 100%</h4>
+                <p class="text-blue-200 text-sm leading-relaxed">Đội ngũ giáo viên quốc tế được tuyển chọn kỹ lưỡng, đào tạo bài bản về phương pháp giảng dạy cho trẻ.</p>
+            </div>
+            <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
+                <div class="text-3xl mb-3">📋</div>
+                <h4 class="font-black text-base mb-2">Chuẩn Cambridge quốc tế</h4>
+                <p class="text-blue-200 text-sm leading-relaxed">Giáo trình được thiết kế theo chuẩn Cambridge, giúp con sẵn sàng cho các kỳ thi quốc tế sau này.</p>
+            </div>
+            <div class="reveal bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white/10">
+                <div class="text-3xl mb-3">💬</div>
+                <h4 class="font-black text-base mb-2">Hỗ trợ phụ huynh 24/7</h4>
+                <p class="text-blue-200 text-sm leading-relaxed">Đội ngũ tư vấn luôn sẵn sàng hỗ trợ và cập nhật tiến độ học tập của con đến phụ huynh thường xuyên.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ CẢM NHẬN PHỤ HUYNH ═══════════════════════ -->
+<section id="cam-nhan" class="bg-gray-50 py-16">
+    <div class="max-w-5xl mx-auto px-4">
+        <h2 class="section-title text-2xl md:text-3xl text-center mb-3">CẢM NHẬN CỦA PHỤ HUYNH VỀ SOPHIA</h2>
+        <p class="text-gray-400 text-center text-sm mb-10">Sophia nhận được nhiều phản hồi tích cực từ phía phụ huynh và học sinh sau mỗi khóa học.</p>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+            <div class="reveal card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-sm mb-3 tracking-widest">★★★★★</div>
+                <p class="text-sm text-gray-600 leading-relaxed mb-5 italic">"Con tôi học tại Sophia được 6 tháng và sự tiến bộ thật sự ngoài mong đợi. Con nói tiếng Anh tự nhiên và tự tin hơn rất nhiều!"</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=60&h=60&fit=crop&crop=face&q=80" class="w-11 h-11 rounded-full object-cover" alt="">
+                    <div>
+                        <p class="font-bold text-navy text-sm">Nguyễn Thị Lan</p>
+                        <p class="text-xs text-gray-400">Phụ huynh bé Minh (7 tuổi)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-sm mb-3 tracking-widest">★★★★★</div>
+                <p class="text-sm text-gray-600 leading-relaxed mb-5 italic">"Giáo viên nước ngoài tại Sophia rất nhiệt tình và chuyên nghiệp. Con tôi rất thích đi học, chưa bao giờ xin nghỉ một buổi nào!"</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=60&h=60&fit=crop&crop=face&q=80" class="w-11 h-11 rounded-full object-cover" alt="">
+                    <div>
+                        <p class="font-bold text-navy text-sm">Trần Văn Hùng</p>
+                        <p class="text-xs text-gray-400">Phụ huynh bé An (5 tuổi)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal card bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                <div class="text-yellow-400 text-sm mb-3 tracking-widest">★★★★★</div>
+                <p class="text-sm text-gray-600 leading-relaxed mb-5 italic">"Lộ trình học rõ ràng, có báo cáo tiến độ hàng tháng giúp tôi theo dõi sự phát triển của con dễ dàng. Rất hài lòng với Sophia!"</p>
+                <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=60&h=60&fit=crop&crop=face&q=80" class="w-11 h-11 rounded-full object-cover" alt="">
+                    <div>
+                        <p class="font-bold text-navy text-sm">Lê Thị Mai</p>
+                        <p class="text-xs text-gray-400">Phụ huynh bé Khánh (9 tuổi)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ STATS + IELTS ACHIEVEMENT ═══════════════════════ -->
+<section class="bg-white py-16">
+    <div class="max-w-5xl mx-auto px-4">
+
+        <!-- Stat boxes -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="reveal bg-blue-50 rounded-2xl p-5 text-center">
+                <div class="text-3xl md:text-4xl font-black text-navy mb-1">500+</div>
+                <div class="text-xs text-gray-500 font-semibold">Giáo viên nước ngoài</div>
+            </div>
+            <div class="reveal bg-red-50 rounded-2xl p-5 text-center">
+                <div class="text-3xl md:text-4xl font-black text-brand-red mb-1">50K+</div>
+                <div class="text-xs text-gray-500 font-semibold">Học viên đang theo học</div>
+            </div>
+            <div class="reveal bg-green-50 rounded-2xl p-5 text-center">
+                <div class="text-3xl md:text-4xl font-black text-green-600 mb-1">15+</div>
+                <div class="text-xs text-gray-500 font-semibold">Năm kinh nghiệm</div>
+            </div>
+            <div class="reveal bg-yellow-50 rounded-2xl p-5 text-center">
+                <div class="text-3xl md:text-4xl font-black text-yellow-600 mb-1">98%</div>
+                <div class="text-xs text-gray-500 font-semibold">Phụ huynh hài lòng</div>
+            </div>
+        </div>
+
+        <!-- IELTS Banner -->
+        <div class="reveal bg-gradient-to-br from-red-700 to-red-950 rounded-2xl p-8 md:p-10 text-white text-center">
+            <div class="inline-flex flex-col items-center justify-center w-24 h-24 rounded-full border-4 border-brand-gold mb-5">
+                <span class="font-black text-3xl leading-none">8.5</span>
+                <span class="text-xs tracking-widest text-yellow-300 mt-0.5">IELTS</span>
+            </div>
+            <h3 class="font-black text-2xl md:text-3xl mb-2">KEN – BẠT THÀNH TÍCH CAO TRONG KỲ THI IELTS</h3>
+            <div class="flex justify-center flex-wrap gap-6 text-sm mt-3 mb-1">
+                <span><strong class="text-brand-gold">LISTENING:</strong> 9.0</span>
+                <span><strong class="text-brand-gold">READING:</strong> 9.0</span>
+                <span><strong class="text-brand-gold">SPEAKING:</strong> 8.0</span>
+            </div>
+            <p class="text-red-200 text-sm font-bold mt-3 tracking-wider">CHỌN CHẤT LƯỢNG – CHỌN SOPHIA</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ ĐỐI TÁC ═══════════════════════ -->
+<section class="bg-gray-50 py-12">
+    <div class="max-w-5xl mx-auto px-4">
+        <h2 class="section-title text-xl text-center mb-8">ĐỐI TÁC CỦA SOPHIA</h2>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+            <div class="bg-white rounded-xl px-6 py-3 shadow-sm border border-gray-100 text-sm font-black text-gray-500">🏛️ Cambridge</div>
+            <div class="bg-white rounded-xl px-6 py-3 shadow-sm border border-gray-100 text-sm font-black text-gray-500">📖 Pearson</div>
+            <div class="bg-white rounded-xl px-6 py-3 shadow-sm border border-gray-100 text-sm font-black text-gray-500">🎓 IDP Education</div>
+            <div class="bg-white rounded-xl px-6 py-3 shadow-sm border border-gray-100 text-sm font-black text-gray-500">📚 ApplyBoard</div>
+            <div class="bg-white rounded-xl px-6 py-3 shadow-sm border border-gray-100 text-sm font-black text-gray-500">🌐 King's College</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ FINAL CTA SECTION ═══════════════════════ -->
+<section class="hero-bg py-16 relative overflow-hidden">
+    <div class="hero-blob-2"></div>
+    <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+        <h2 class="text-white font-black text-2xl md:text-4xl mb-3">ĐĂNG KÝ NGAY ĐỂ NHẬN TƯ VẤN MIỄN PHÍ</h2>
+        <p class="text-blue-200 text-sm mb-8 max-w-md mx-auto">Đội ngũ tư vấn của Sophia sẵn sàng hỗ trợ bạn chọn lộ trình phù hợp nhất cho con.</p>
+
+        <div class="bg-white rounded-2xl shadow-2xl p-7 md:p-8 max-w-md mx-auto">
+            <form class="flex flex-col gap-4" onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Họ và Tên Phụ huynh" required
+                    class="border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-800 placeholder-gray-400 text-sm w-full">
+                <input type="tel" placeholder="Số điện thoại" required
+                    class="border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-800 placeholder-gray-400 text-sm w-full">
+                <div class="relative">
+                    <select required class="border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-500 text-sm w-full appearance-none bg-white">
+                        <option value="" disabled selected>Độ tuổi của học viên</option>
+                        <option>2 – 3 tuổi (Mầm non)</option>
+                        <option>4 – 6 tuổi (Mẫu giáo)</option>
+                        <option>7 – 10 tuổi (Tiểu học)</option>
+                        <option>11 – 13 tuổi (THCS)</option>
+                        <option>14 – 16 tuổi (THPT)</option>
+                    </select>
+                    <span class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-xs">▼</span>
+                </div>
+                <button type="submit" class="btn-red text-white font-black text-lg py-4 rounded-xl w-full tracking-wide">
+                    ĐĂNG KÝ NGAY! 🎉
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="bg-blue-950 text-blue-300 py-12">
+    <div class="max-w-5xl mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="mb-4">
+                    <a href="https://sophiavietnam.edu.vn/" target="_blank" rel="noopener">
+                        <img src="imgs/logo.jpeg" alt="Sophia English Center" class="h-14 w-auto object-contain bg-white rounded-lg px-2 py-1">
+                    </a>
+                </div>
+                <p class="text-sm leading-relaxed">Trung tâm tiếng Anh chất lượng cao với 100% giáo viên nước ngoài và giáo trình chuẩn Cambridge.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Liên Kết Nhanh</h4>
+                <ul class="flex flex-col gap-2 text-sm">
+                    <li><a href="#chuong-trinh" class="hover:text-white transition-colors">Chương Trình</a></li>
+                    <li><a href="#khoa-hoc"     class="hover:text-white transition-colors">Khóa Học</a></li>
+                    <li><a href="#ly-do"        class="hover:text-white transition-colors">Tại Sao Sophia</a></li>
+                    <li><a href="#cam-nhan"     class="hover:text-white transition-colors">Cảm Nhận</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Liên Hệ</h4>
+                <ul class="flex flex-col gap-4 text-sm">
+                    <li>
+                        <p class="text-white font-bold text-xs mb-1 tracking-wide">CƠ SỞ 1</p>
+                        <p>📍 168 - 170 Phạm Cự Lượng, Sơn Trà, Đà Nẵng</p>
+                        <p class="mt-0.5">📞 0918.570.775</p>
+                    </li>
+                    <li>
+                        <p class="text-white font-bold text-xs mb-1 tracking-wide">CƠ SỞ 2</p>
+                        <p>📍 100 Nguyễn Thị Minh Khai, Hải Châu, Đà Nẵng</p>
+                        <p class="mt-0.5">📞 0935.539.277</p>
+                    </li>
+                    <li>
+                        <p class="text-white font-bold text-xs mb-1 tracking-wide">CƠ SỞ 3</p>
+                        <p>📍 279 Núi Thành, Hải Châu, Đà Nẵng</p>
+                        <p class="mt-0.5">📞 0854.707.279</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-blue-900 pt-6 text-center text-xs text-blue-500">
+            © 2024 Sophia English Center. Tất cả quyền được bảo lưu.
+        </div>
+    </div>
+</footer>
+
+
+<!-- ═══════════════════════ SUCCESS MODAL ═══════════════════════ -->
+<div id="successModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center px-4">
+    <div class="bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl">
+        <div class="text-6xl mb-4">🎉</div>
+        <h3 class="font-black text-navy text-2xl mb-2">Đăng Ký Thành Công!</h3>
+        <p class="text-gray-500 text-sm mb-6 leading-relaxed">
+            Cảm ơn bạn đã đăng ký! Nhân viên Sophia sẽ liên hệ trong vòng <strong>24 giờ</strong> để tư vấn và xác nhận thông tin quà tặng.
+        </p>
+        <button onclick="closeModal()" class="btn-red text-white font-bold px-8 py-3 rounded-full w-full">
+            Đóng
+        </button>
+    </div>
+</div>
+
+
+<!-- ═══════════════════════ FLOATING MOBILE CTA ═══════════════════════ -->
+<div class="fixed bottom-0 left-0 right-0 z-40 md:hidden floating-cta bg-white p-3">
+    <a href="#form-hero" class="btn-red text-white font-black text-sm py-3.5 rounded-xl w-full flex items-center justify-center gap-2">
+        🎁 NHẬN 1 THÁNG HỌC TIẾNG ANH MIỄN PHÍ
+    </a>
+</div>
+
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════ -->
+<script>
+    // --- Mobile menu ---
+    const menuBtn   = document.getElementById('menuBtn');
+    const mobileMenu= document.getElementById('mobileMenu');
+    const iconOpen  = document.getElementById('iconOpen');
+    const iconClose = document.getElementById('iconClose');
+
+    menuBtn.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden',  !open);
+        iconClose.classList.toggle('hidden',  open);
+    });
+    mobileMenu.querySelectorAll('a').forEach(a =>
+        a.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+        })
+    );
+
+    // --- Tabs ---
+    const TABS = ['phuong-phap', 'cong-nghe', 'lo-trinh'];
+
+    function switchTab(active) {
+        TABS.forEach(name => {
+            const btn = document.getElementById('tab-' + name);
+            const panel = document.getElementById('content-' + name);
+            if (name === active) {
+                btn.classList.add('tab-active');
+                btn.classList.remove('text-brand-red');
+                panel.classList.remove('hidden');
+            } else {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-brand-red');
+                panel.classList.add('hidden');
+            }
+        });
+    }
+
+    // --- Form submit ---
+    function handleSubmit(e) {
+        e.preventDefault();
+        document.getElementById('successModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        e.target.reset();
+    }
+
+    function closeModal() {
+        document.getElementById('successModal').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('successModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // --- Smooth scroll ---
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                const offset = 72;
+                const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // --- Scroll-reveal ---
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                entry.target.style.transitionDelay = (i * 0.08) + 's';
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
